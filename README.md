@@ -10,7 +10,7 @@ For the following two data requests, **build** and **show** SQL queries and **ex
 <aside>
 👉 **The dataset is contained in this SQLite database file:**
 
-[wunderflats_case_study.db](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/8a971388-b482-421d-858d-9887a9e0c54b/wunderflats_test.db)
+[wunderflats_case_study.db](#)
 
 **You don’t need to provide the query result.**
 
