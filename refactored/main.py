@@ -2,7 +2,7 @@ import google.cloud.bigquery as bq
 
 
 # Defining a function which to read the file
-def read_file(path: str = 'myfile.csv', mode: str = 'r', encoding: str = 'utf-8') -> str:
+def read_file(path: str = 'resources/myfile.csv', mode: str = 'r', encoding: str = 'utf-8') -> str:
     with open(path, mode, encoding=encoding) as file:
         return file.read()
 
@@ -13,9 +13,6 @@ def process_csv(input_data: str):
     return data
 
 
-if __name__ == '__main__':
-    i = read_file()
-    d = process_csv(input_data=i)
+def write_data(data):
     c = bq.Client()
-    t = c.get_table("myproject.mydataset.mytable")
-    e = c.insert_rows(t, d)
+    c.insert_rows(c.get_table("myproject.mydataset.mytable"), data)

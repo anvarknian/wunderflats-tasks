@@ -31,7 +31,7 @@ In addition, we want to know your **assumptions** and your **thoughts** on **wha
 ```python
 import google.cloud.bigquery as bq
 
-fh = open('myfile.csv')
+fh = open('resources/myfile.csv')
 fc = fh.read()
 
 data = [l.split(",") for l in fc.split('\n')]
