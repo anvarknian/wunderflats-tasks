@@ -9,7 +9,6 @@ services:
     networks:
       - custom_network
   api:
-    platform: linux/x86_64
     build:
       context: .
       dockerfile: Dockerfile
@@ -21,11 +20,10 @@ services:
     networks:
       - custom_network
   worker:
-    platform: linux/x86_64
     build:
       context: .
       dockerfile: Dockerfile
-    command: [ "python" , "-m" , "fullapp", "worker"]
+    command: [ "python" , "-m" , "fullapp", "worker" ]
     environment:
       - BROKER_URL=redis://redis:6379
       - RESULT_BACKEND=redis://redis:6379

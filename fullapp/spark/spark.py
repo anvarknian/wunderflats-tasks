@@ -25,12 +25,14 @@ def spark_runner():
         .csv('resources/myfile.csv')
 
     # # Checking Schema of DF
-    # data.printSchema()
+    data.printSchema()
     # # Checking DF
-    # data.show(5)
-    return data.show(5)
-    # data.write \
-    #     .option('header', True) \
-    #     .partitionBy('Home State') \
-    #     .format('bigquery') \
-    #     .option('table', 'myproject.mydataset.mytable').mode('append').save()
+    data.show(5)
+
+    data.write \
+        .option('header', True) \
+        .partitionBy('Home State') \
+        .format('bigquery') \
+        .option('table', 'myproject.mydataset.mytable').mode('append').save()
+
+    return "OK"
