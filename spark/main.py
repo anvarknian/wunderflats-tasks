@@ -1,5 +1,6 @@
 from pyspark.sql import SparkSession
 
+
 def spark_factory(app_name: str):
     spark = SparkSession \
         .builder \
@@ -12,4 +13,3 @@ def spark_factory(app_name: str):
         .config('spark.executor.memory', '10g') \
         .getOrCreate()
     return spark
-

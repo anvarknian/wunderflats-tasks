@@ -1,0 +1,46 @@
+version: '3.7'
+services:
+  redis:
+    image: redis
+    expose:
+      - 6379
+    ports:
+      - 6379:6379
+    networks:
+      - custom_network
+  api:
+    platform: linux/x86_64
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: [ "python", "-m", "fullapp", "api" ]
+    ports:
+      - 8080:8080
+    depends_on:
+      - redis
+    networks:
+      - custom_network
+  worker:
+    platform: linux/x86_64
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: [ "python" , "-m" , "fullapp", "worker"]
+    environment:
+      - BROKER_URL=redis://redis:6379
+      - RESULT_BACKEND=redis://redis:6379
+    depends_on:
+      - redis
+    networks:
+      - custom_network
+  flower:
+    image: mher/flower:0.9.5
+    command: [ 'flower', '--broker=redis://redis:6379', '--port=5555' ]
+    ports:
+      - 5555:5555
+    depends_on:
+      - redis
+    networks:
+      - custom_network
+networks:
+  custom_network:
